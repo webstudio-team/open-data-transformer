@@ -1,0 +1,43 @@
+{
+  "delimiter": ";",
+  "encoding": "win1250",
+  "locale": "cs",
+  "overrideHeaders": true,
+  "title": "Psychiatrická péče: Sebevražedné pokusy",
+  "description": "Datová sada poskytuje v jednom souboru agregovaná data o počtu sebevražedných pokusů ve stratifikaci dle pohlaví.",
+  "filename": "sebevrazedne-pokusy.csv",
+  "source": "Národní registr hrazených zdravotnických služeb (NRHZS)",
+  "keywords": ["psychiatrická péče", "sebevražedné pokusy"],
+  "columns": [
+    {
+      "name":"cislo_indikatoru",
+      "datatype": "integer",
+      "description": "Číslo indikátoru dle metodické příručky MERRPS"
+    },
+    {
+      "name":"nazev_indikatoru",
+      "datatype": "string",
+      "description": "Název indikátoru dle metodické příručky MERRPS"
+    },
+    {
+      "name":"ukazatel",
+      "datatype": "string",
+      "description": "Rozlišení počtu hospitalizací a počtu pacientů, absolutní počty a přepočty na 100 000 obyvatel"
+    },
+    {
+      "name":"pohlavi",
+      "datatype": "string",
+      "description": "Rozdělení na muže, ženy a celkem"
+    },
+    {
+      "name":"rok",
+      "datatype": "integer",
+      "description": "Rok, pro který jsou údaje platné"
+    },
+    {
+      "name":"pocet",
+      "datatype": "integer",
+      "description": "Počet pacientů a hospitalizací"
+    }
+  ]
+}
