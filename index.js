@@ -5,6 +5,7 @@ const iconv = require("iconv-lite");
 const { transform } = require("stream-transform");
 const createCsvStringifier = require("csv-writer").createArrayCsvStringifier;
 const allowedDatatypes = ["string", "integer", "float", "boolean"];
+const csvSchemaGenerator = require("./csvSchemaGenerator");
 
 function getInputFilename() {
   const inputFilename = process.argv.slice(2)[0];
@@ -96,7 +97,11 @@ const transformer = () => {
 const writer = fs.createWriteStream(config.filename);
 
 function run() {
+  console.log('Generating csv...')
   readCsv(getInputFilename()).pipe(transformer()).pipe(writer);
+  console.log('Generating schema...')
+  csvSchemaGenerator.generate()
+  console.log('Done!')
 }
 
 run();
