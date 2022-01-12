@@ -4,7 +4,7 @@ const fs = require("fs");
 const iconv = require("iconv-lite");
 const { createParser } = require("./src/modules/parser.js");
 const { createTransformer } = require("./src/modules/transformer");
-const csvSchemaGenerator = require("./csvSchemaGenerator");
+const csvSchemaGenerator = require("./src/modules/csvSchemaGenerator");
 
 function getInputFilename() {
   const inputFilename = process.argv.slice(2)[0];

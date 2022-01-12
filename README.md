@@ -11,7 +11,7 @@ yarn
 
 ## CLI Usage
 
-- create `config.js` with dataset metadata (see `config.js.example`)
+- create `src/config.js` with dataset metadata (see `src/config.js.example`)
 - run `node cli input.csv`
 
 # Getting Started with Create React App
