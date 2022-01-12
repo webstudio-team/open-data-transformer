@@ -23,6 +23,8 @@ function parseValue(value, datatype) {
       return parseFloat(value);
     case "boolean":
       return [1, "1", true, "true"].includes(value) ? 1 : 0;
+    default:
+      return value;
   }
 }
 
