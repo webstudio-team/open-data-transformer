@@ -1,8 +1,5 @@
-const config = require("./config.json");
-const fs = require("fs");
-
-function generateSchemaColumns() {
-  return config.columns.map((column) => {
+function generateSchemaColumns(columns) {
+  return columns.map((column) => {
     return {
       name: column.name,
       titles: column.name,
@@ -12,8 +9,8 @@ function generateSchemaColumns() {
   });
 }
 
-function generate() {
-  const schema = {
+function generate(config) {
+  return {
     "@context": [
       "http://www.w3.org/ns/csvw",
       {
@@ -40,19 +37,9 @@ function generate() {
       "@type": "xsd:dateTime",
     },
     tableSchema: {
-      columns: generateSchemaColumns(),
+      columns: generateSchemaColumns(config.columns),
     },
   };
-
-  fs.writeFile(
-    `${config.filename}-metadata.json`,
-    JSON.stringify(schema, 0, 4),
-    (err) => {
-      if (err) {
-        console.log(err);
-      }
-    }
-  );
 }
 
 module.exports = {

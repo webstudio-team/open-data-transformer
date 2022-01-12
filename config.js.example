@@ -1,7 +1,6 @@
-{
+const config = {
   "delimiter": ";",
   "encoding": "win1250",
-  "locale": "cs",
   "overrideHeaders": true,
   "title": "Psychiatrická péče: Sebevražedné pokusy",
   "description": "Datová sada poskytuje v jednom souboru agregovaná data o počtu sebevražedných pokusů ve stratifikaci dle pohlaví.",
@@ -41,3 +40,5 @@
     }
   ]
 }
+
+exports.config = config

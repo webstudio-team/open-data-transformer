@@ -1,10 +1,11 @@
-const config = require("./config.json");
 const fs = require("fs");
 const { parse } = require("csv-parse");
 const iconv = require("iconv-lite");
 const { transform } = require("stream-transform");
 const createCsvStringifier = require("csv-writer").createArrayCsvStringifier;
 const allowedDatatypes = ["string", "integer", "float", "boolean"];
+
+const { config } = require("./config.js");
 const csvSchemaGenerator = require("./csvSchemaGenerator");
 
 function getInputFilename() {
@@ -45,13 +46,6 @@ function getStringifierConfig() {
   };
 }
 
-function readCsv(filename) {
-  return fs
-    .createReadStream(filename)
-    .pipe(iconv.decodeStream(getReaderEncoding()))
-    .pipe(parse(getParserConfig()));
-}
-
 function parseValue(value, datatype) {
   if (!allowedDatatypes.includes(datatype)) {
     throw new Error(`Datatype ${datatype} is not allowed or valid.`);
@@ -68,6 +62,12 @@ function parseValue(value, datatype) {
       return [1, "1", true, "true"].includes(value) ? 1 : 0;
   }
 }
+
+const reader = fs.createReadStream(getInputFilename());
+
+const decoder = iconv.decodeStream(getReaderEncoding());
+
+const parser = parse(getParserConfig());
 
 const transformer = () => {
   const stringifier = createCsvStringifier(getStringifierConfig());
@@ -97,11 +97,19 @@ const transformer = () => {
 const writer = fs.createWriteStream(config.filename);
 
 function run() {
-  console.log('Generating csv...')
-  readCsv(getInputFilename()).pipe(transformer()).pipe(writer);
-  console.log('Generating schema...')
-  csvSchemaGenerator.generate()
-  console.log('Done!')
+  console.log("Generating csv...");
+  reader.pipe(decoder).pipe(parser).pipe(transformer()).pipe(writer);
+  console.log("Generating schema...");
+  fs.writeFile(
+    `${config.filename}-metadata.json`,
+    JSON.stringify(csvSchemaGenerator.generate(config), 0, 4),
+    (err) => {
+      if (err) {
+        console.log(err);
+      }
+    }
+  );
+  console.log("Done!");
 }
 
 run();
