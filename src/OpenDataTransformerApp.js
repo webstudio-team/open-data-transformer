@@ -1,6 +1,8 @@
 import { config as defaultConfig } from "./config";
+import "./App.css";
 
 import { useRef } from "react";
+import { useState } from "react";
 import fileReaderStream from "filereader-stream";
 import iconv from "iconv-lite";
 import stream from "stream-browserify";
@@ -11,9 +13,20 @@ import { transform } from "stream-transform/dist/esm/index.js";
 import * as ponyfill from "web-streams-polyfill/ponyfill";
 import streamSaver from "streamsaver";
 import csvSchemaGenerator from "./modules/csvSchemaGenerator";
+import FormComponent from "./FormComponent";
+
 streamSaver.WritableStream = ponyfill.WritableStream;
 
 export default function OpenDataTransformerApp() {
+
+  const [formData, setFormData] = useState({
+    encoding: "win1250",
+    delimiter: ";",
+    overrideHeaders: false,
+  });
+  const [headerData, setHeaderData] = useState([]);
+  const [columnData, setColumnData] = useState([]);
+
   const configRef = useRef();
   const inputRef = useRef();
 
@@ -81,17 +94,80 @@ export default function OpenDataTransformerApp() {
     writer.close();
   }
 
+  const handleChange = (event) => {
+    setFormData({
+      ...formData,
+
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log(formData);
+    getFirstRow();
+  };
+
+  function getFirstRow() {
+    const file = inputRef.current.files[0];
+
+    const reader = (file) => fileReaderStream(file);
+    const decoder = () => {
+      iconv.enableStreamingAPI(stream);
+      return iconv.decodeStream(formData.encoding);
+    };
+    const parser = createParser(formData, parse);
+
+    let firstRow = [];
+    reader(file)
+      .pipe(decoder())
+      .pipe(parser)
+      .on("readable", function () {
+        if (firstRow.length !== 0) {
+          return;
+        }
+        let row = this.read();
+        firstRow = row;
+        setHeaderData(firstRow);
+      });
+  }
+
+  function handleState(items) {
+    console.log(items);
+    let newColumnData = columnData;
+    newColumnData[items.index] = items;
+    console.log(newColumnData);
+    setColumnData(newColumnData);
+  }
+
   return (
     <div>
       <h1>Open Data Transformer</h1>
-      <p>
-        <textarea
-          ref={configRef}
-          defaultValue={JSON.stringify(defaultConfig, null, 2)}
-          aria-label="Ugliest form ever"
-          style={{ width: 500, height: 300 }}
-        />
-      </p>
+
+      <form onSubmit={handleSubmit}>
+        <select onChange={handleChange} name="encoding" id="encoding">
+          <option value="none">none</option>
+          <option value="win1250">win1250</option>
+        </select>
+        <select onChange={handleChange} name="delimiter" id="delimiter">
+          <option value="none">none</option>
+          <option value=";">;</option>
+        </select>
+        <input type="submit" value="Submit" />
+      </form>
+
+      {!!headerData.length && <div>Columns data</div>}
+      {!!headerData.length &&
+        headerData.map((item, index) => {
+          return (
+            <FormComponent
+              index={index}
+              headerData={headerData[index]}
+              key={index}
+              handleState={handleState}
+            />
+          );
+        })}
       <p>
         <input type="file" ref={inputRef} />
       </p>
