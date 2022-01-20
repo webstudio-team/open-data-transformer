@@ -18,7 +18,6 @@ import FormComponent from "./FormComponent";
 streamSaver.WritableStream = ponyfill.WritableStream;
 
 export default function OpenDataTransformerApp() {
-
   const [formData, setFormData] = useState({
     encoding: "win1250",
     delimiter: ";",
@@ -27,16 +26,10 @@ export default function OpenDataTransformerApp() {
   const [headerData, setHeaderData] = useState([]);
   const [columnData, setColumnData] = useState([]);
 
-  const configRef = useRef();
   const inputRef = useRef();
 
   function getConfig() {
-    try {
-      return JSON.parse(configRef.current.value);
-    } catch (err) {
-      console.log("Textarea input is not valid JSON.");
-      return null;
-    }
+    //todo construct from state/form values
   }
 
   function createWriter(filename) {
@@ -129,15 +122,28 @@ export default function OpenDataTransformerApp() {
         let row = this.read();
         firstRow = row;
         setHeaderData(firstRow);
+
+        let columnsState = [];
+        firstRow.forEach((value, index) => {
+          columnsState[index] = {
+            name: value,
+            datatype: "string",
+            description: "",
+          };
+        });
+        setColumnData(columnsState);
       });
   }
 
-  function handleState(items) {
-    console.log(items);
-    let newColumnData = columnData;
-    newColumnData[items.index] = items;
-    console.log(newColumnData);
-    setColumnData(newColumnData);
+  function setColumnState(index, payload) {
+    let oldState = columnData;
+    let newColumnState = {
+      ...oldState[index],
+      ...payload,
+    };
+    let newState = oldState;
+    newState[index] = newColumnState;
+    setColumnData(newState);
   }
 
   return (
@@ -146,25 +152,23 @@ export default function OpenDataTransformerApp() {
 
       <form onSubmit={handleSubmit}>
         <select onChange={handleChange} name="encoding" id="encoding">
-          <option value="none">none</option>
           <option value="win1250">win1250</option>
         </select>
         <select onChange={handleChange} name="delimiter" id="delimiter">
-          <option value="none">none</option>
           <option value=";">;</option>
         </select>
         <input type="submit" value="Submit" />
       </form>
 
-      {!!headerData.length && <div>Columns data</div>}
-      {!!headerData.length &&
-        headerData.map((item, index) => {
+      {!!columnData.length && <div>Columns data</div>}
+      {!!columnData.length &&
+        columnData.map((item, index) => {
           return (
             <FormComponent
               index={index}
-              headerData={headerData[index]}
+              headerData={item.name}
               key={index}
-              handleState={handleState}
+              handleChange={setColumnState}
             />
           );
         })}
