@@ -1,4 +1,3 @@
-import { config as defaultConfig } from "./config";
 import "./App.css";
 
 import { useRef } from "react";
@@ -13,7 +12,7 @@ import { transform } from "stream-transform/dist/esm/index.js";
 import * as ponyfill from "web-streams-polyfill/ponyfill";
 import streamSaver from "streamsaver";
 import csvSchemaGenerator from "./modules/csvSchemaGenerator";
-import FormComponent from "./FormComponent";
+import ColumnForm from "./ColumnForm";
 
 streamSaver.WritableStream = ponyfill.WritableStream;
 
@@ -23,13 +22,22 @@ export default function OpenDataTransformerApp() {
     delimiter: ";",
     overrideHeaders: false,
   });
-  const [headerData, setHeaderData] = useState([]);
-  const [columnData, setColumnData] = useState([]);
+  const [columnsData, setColumnsData] = useState([]);
 
   const inputRef = useRef();
 
   function getConfig() {
-    //todo construct from state/form values
+    //todo
+    return {
+      ...formData,
+      title: "Psychiatrická péče: Sebevražedné pokusy",
+      description:
+        "Datová sada poskytuje v jednom souboru agregovaná data o počtu sebevražedných pokusů ve stratifikaci dle pohlaví.",
+      filename: "osoby.csv",
+      source: "Národní registr hrazených zdravotnických služeb (NRHZS)",
+      keywords: ["psychiatrická péče", "sebevražedné pokusy"],
+      columns: columnsData,
+    };
   }
 
   function createWriter(filename) {
@@ -38,10 +46,6 @@ export default function OpenDataTransformerApp() {
 
   function handleDownloadCsv() {
     const config = getConfig();
-
-    if (config == null) {
-      return;
-    }
 
     const file = inputRef.current.files[0];
 
@@ -77,17 +81,13 @@ export default function OpenDataTransformerApp() {
   function handleDownloadMetadata() {
     const config = getConfig();
 
-    if (config == null) {
-      return;
-    }
-
     const schema = csvSchemaGenerator.generate(config);
     const writer = createWriter(config.filename + "-metadata.json");
     writer.write(new TextEncoder().encode(JSON.stringify(schema, null, 4)));
     writer.close();
   }
 
-  const handleChange = (event) => {
+  const handleFormChange = (event) => {
     setFormData({
       ...formData,
 
@@ -97,11 +97,10 @@ export default function OpenDataTransformerApp() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(formData);
-    getFirstRow();
+    loadCsvHeaders();
   };
 
-  function getFirstRow() {
+  function loadCsvHeaders() {
     const file = inputRef.current.files[0];
 
     const reader = (file) => fileReaderStream(file);
@@ -111,39 +110,37 @@ export default function OpenDataTransformerApp() {
     };
     const parser = createParser(formData, parse);
 
-    let firstRow = [];
+    let headers = [];
     reader(file)
       .pipe(decoder())
       .pipe(parser)
-      .on("readable", function () {
-        if (firstRow.length !== 0) {
+      .on("readable", () => {
+        if (headers.length !== 0) {
           return;
         }
-        let row = this.read();
-        firstRow = row;
-        setHeaderData(firstRow);
 
-        let columnsState = [];
-        firstRow.forEach((value, index) => {
-          columnsState[index] = {
+        headers = parser.read();
+        let columnsData = [];
+        headers.forEach((value, index) => {
+          columnsData[index] = {
             name: value,
             datatype: "string",
             description: "",
           };
         });
-        setColumnData(columnsState);
+        setColumnsData(columnsData);
       });
   }
 
   function setColumnState(index, payload) {
-    let oldState = columnData;
+    let oldState = columnsData;
     let newColumnState = {
       ...oldState[index],
       ...payload,
     };
     let newState = oldState;
     newState[index] = newColumnState;
-    setColumnData(newState);
+    setColumnsData(newState);
   }
 
   return (
@@ -151,22 +148,22 @@ export default function OpenDataTransformerApp() {
       <h1>Open Data Transformer</h1>
 
       <form onSubmit={handleSubmit}>
-        <select onChange={handleChange} name="encoding" id="encoding">
+        <select onChange={handleFormChange} name="encoding" id="encoding">
           <option value="win1250">win1250</option>
         </select>
-        <select onChange={handleChange} name="delimiter" id="delimiter">
+        <select onChange={handleFormChange} name="delimiter" id="delimiter">
           <option value=";">;</option>
         </select>
         <input type="submit" value="Submit" />
       </form>
 
-      {!!columnData.length && <div>Columns data</div>}
-      {!!columnData.length &&
-        columnData.map((item, index) => {
+      {!!columnsData.length && <div>Columns data</div>}
+      {!!columnsData.length &&
+        columnsData.map((item, index) => {
           return (
-            <FormComponent
+            <ColumnForm
               index={index}
-              headerData={item.name}
+              columnName={item.name}
               key={index}
               handleChange={setColumnState}
             />

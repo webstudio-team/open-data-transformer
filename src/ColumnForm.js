@@ -1,4 +1,4 @@
-export default function FormComponent({ index, headerData, handleChange }) {
+export default function ColumnForm({ index, columnName, handleChange }) {
   const handleInput = (event) => {
     handleChange(index, {
       [event.target.name]: event.target.value,
@@ -10,7 +10,7 @@ export default function FormComponent({ index, headerData, handleChange }) {
       <input
         name="name"
         type="text"
-        defaultValue={headerData}
+        defaultValue={columnName}
         onChange={handleInput}
       />
       <select name="datatype" id="datatype" onChange={handleInput}>
