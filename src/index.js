@@ -7,8 +7,8 @@ import reportWebVitals from "./reportWebVitals";
 
 ReactDOM.render(
   <React.StrictMode>
-    <OpenDataTransformerApp />
     <App />
+    <OpenDataTransformerApp />
   </React.StrictMode>,
   document.getElementById("root")
 );
