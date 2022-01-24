@@ -7,17 +7,29 @@ export default function ColumnForm({ index, columnName, handleChange }) {
 
   return (
     <div>
-      <input
-        name="name"
-        type="text"
-        defaultValue={columnName}
-        onChange={handleInput}
-      />
-      <select name="datatype" id="datatype" onChange={handleInput}>
-        <option value="string">string</option>
-        <option value="integer">integer</option>
-      </select>
-      <input name="description" type="text" onChange={handleInput} />
+      <label htmlFor="name">Název:</label>
+      <div>
+        <input
+          name="name"
+          type="text"
+          defaultValue={columnName}
+          onChange={handleInput}
+        />
+      </div>
+      <br />
+      <label htmlFor="datatype">Datový typ:</label>
+      <div>
+        <select name="datatype" id="datatype" onChange={handleInput}>
+          <option value="string">string</option>
+          <option value="integer">integer</option>
+        </select>
+      </div>
+      <br />
+      <label htmlFor="description">Popis:</label>
+      <div>
+        <input name="description" type="text" onChange={handleInput} />
+      </div>
+      <br />
     </div>
   );
 }

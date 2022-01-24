@@ -13,6 +13,9 @@ import * as ponyfill from "web-streams-polyfill/ponyfill";
 import streamSaver from "streamsaver";
 import csvSchemaGenerator from "./modules/csvSchemaGenerator";
 import ColumnForm from "./ColumnForm";
+import UploadComponent from "./UploadComponent";
+import FileForm from "./FileForm";
+import "./ODT.css";
 
 streamSaver.WritableStream = ponyfill.WritableStream;
 
@@ -23,6 +26,14 @@ export default function OpenDataTransformerApp() {
     overrideHeaders: false,
   });
   const [columnsData, setColumnsData] = useState([]);
+  const [fileData, setFileData] = useState({
+    title: "",
+    description: "",
+    filename: "",
+    source: "",
+  });
+
+  const [tags, setTags] = useState(["example tag"]);
 
   const inputRef = useRef();
 
@@ -30,12 +41,8 @@ export default function OpenDataTransformerApp() {
     //todo
     return {
       ...formData,
-      title: "Psychiatrická péče: Sebevražedné pokusy",
-      description:
-        "Datová sada poskytuje v jednom souboru agregovaná data o počtu sebevražedných pokusů ve stratifikaci dle pohlaví.",
-      filename: "osoby.csv",
-      source: "Národní registr hrazených zdravotnických služeb (NRHZS)",
-      keywords: ["psychiatrická péče", "sebevražedné pokusy"],
+      ...fileData,
+      ...tags,
       columns: columnsData,
     };
   }
@@ -144,34 +151,37 @@ export default function OpenDataTransformerApp() {
   }
 
   return (
-    <div>
+    <div className="container">
       <h1>Open Data Transformer</h1>
 
       <form onSubmit={handleSubmit}>
-        <select onChange={handleFormChange} name="encoding" id="encoding">
-          <option value="win1250">win1250</option>
-        </select>
-        <select onChange={handleFormChange} name="delimiter" id="delimiter">
-          <option value=";">;</option>
-        </select>
-        <input type="submit" value="Submit" />
+        <UploadComponent
+          inputRef={inputRef}
+          handleFormChange={handleFormChange}
+        />
+        {!!columnsData.length && <div><h2>File's data</h2></div>}
+        {!!columnsData.length && (
+            <FileForm
+                setFileData={setFileData}
+                fileData={fileData}
+                tags={tags}
+                setTags={setTags}
+            />
+        )}
+        {!!columnsData.length && <div><h2>Columns data</h2></div>}
+        {!!columnsData.length &&
+          columnsData.map((item, index) => {
+            return (
+              <ColumnForm
+                index={index}
+                columnName={item.name}
+                key={index}
+                handleChange={setColumnState}
+              />
+            );
+          })}
       </form>
 
-      {!!columnsData.length && <div>Columns data</div>}
-      {!!columnsData.length &&
-        columnsData.map((item, index) => {
-          return (
-            <ColumnForm
-              index={index}
-              columnName={item.name}
-              key={index}
-              handleChange={setColumnState}
-            />
-          );
-        })}
-      <p>
-        <input type="file" ref={inputRef} />
-      </p>
       <p>
         <button onClick={handleDownloadCsv}>Download csv</button>
       </p>
