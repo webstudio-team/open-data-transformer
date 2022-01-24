@@ -21,8 +21,8 @@ streamSaver.WritableStream = ponyfill.WritableStream;
 
 export default function OpenDataTransformerApp() {
   const [formData, setFormData] = useState({
-    encoding: "win1250",
-    delimiter: ";",
+    encoding: "",
+    delimiter: "",
     overrideHeaders: false,
   });
   const [columnsData, setColumnsData] = useState([]);
@@ -103,11 +103,21 @@ export default function OpenDataTransformerApp() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    if (formData.encoding === "" || formData.delimiter === "") {
+      console.log("Please select delimiter or encoding.");
+      return;
+    }
+
     loadCsvHeaders();
   };
 
   function loadCsvHeaders() {
     const file = inputRef.current.files[0];
+
+    if (file === undefined) {
+      console.log("Please select file.");
+      return;
+    }
 
     const reader = (file) => fileReaderStream(file);
     const decoder = () => {
@@ -154,20 +164,25 @@ export default function OpenDataTransformerApp() {
       <h1>Open Data Transformer</h1>
 
       <form onSubmit={handleSubmit}>
-        <FilePicker
-          inputRef={inputRef}
-          handleFormChange={handleFormChange}
-        />
-        {!!columnsData.length && <div><h2>File's data</h2></div>}
+        <FilePicker inputRef={inputRef} handleFormChange={handleFormChange} />
         {!!columnsData.length && (
-            <DatasetMetadataForm
-                setFileData={setFileData}
-                fileData={fileData}
-                tags={tags}
-                setTags={setTags}
-            />
+          <div>
+            <h2>File's data</h2>
+          </div>
         )}
-        {!!columnsData.length && <div><h2>Columns data</h2></div>}
+        {!!columnsData.length && (
+          <DatasetMetadataForm
+            setFileData={setFileData}
+            fileData={fileData}
+            tags={tags}
+            setTags={setTags}
+          />
+        )}
+        {!!columnsData.length && (
+          <div>
+            <h2>Columns data</h2>
+          </div>
+        )}
         {!!columnsData.length &&
           columnsData.map((item, index) => {
             return (
