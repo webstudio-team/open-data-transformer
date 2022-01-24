@@ -1,7 +1,8 @@
-import ReactTagInput from "@pathofdev/react-tag-input";
 import "@pathofdev/react-tag-input/build/index.css";
 
-export default function FileForm({ fileData, setFileData, tags, setTags }) {
+import ReactTagInput from "@pathofdev/react-tag-input";
+
+export default function DatasetMetadataForm({ fileData, setFileData, tags, setTags }) {
   const handleFileFormChange = (event) => {
     setFileData({
       ...fileData,

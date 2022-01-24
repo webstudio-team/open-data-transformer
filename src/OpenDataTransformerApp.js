@@ -1,4 +1,5 @@
 import "./App.css";
+import "./ODT.css";
 
 import { useRef } from "react";
 import { useState } from "react";
@@ -13,9 +14,8 @@ import * as ponyfill from "web-streams-polyfill/ponyfill";
 import streamSaver from "streamsaver";
 import csvSchemaGenerator from "./modules/csvSchemaGenerator";
 import ColumnForm from "./ColumnForm";
-import UploadComponent from "./UploadComponent";
-import FileForm from "./FileForm";
-import "./ODT.css";
+import FilePicker from "./FilePicker";
+import DatasetMetadataForm from "./DatasetMetadataForm";
 
 streamSaver.WritableStream = ponyfill.WritableStream;
 
@@ -38,7 +38,6 @@ export default function OpenDataTransformerApp() {
   const inputRef = useRef();
 
   function getConfig() {
-    //todo
     return {
       ...formData,
       ...fileData,
@@ -155,13 +154,13 @@ export default function OpenDataTransformerApp() {
       <h1>Open Data Transformer</h1>
 
       <form onSubmit={handleSubmit}>
-        <UploadComponent
+        <FilePicker
           inputRef={inputRef}
           handleFormChange={handleFormChange}
         />
         {!!columnsData.length && <div><h2>File's data</h2></div>}
         {!!columnsData.length && (
-            <FileForm
+            <DatasetMetadataForm
                 setFileData={setFileData}
                 fileData={fileData}
                 tags={tags}

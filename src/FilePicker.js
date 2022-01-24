@@ -1,4 +1,4 @@
-export default function UploadComponent({ inputRef, handleFormChange }) {
+export default function FilePicker({ inputRef, handleFormChange }) {
   return (
     <div>
       <label htmlFor="file">Nahrajte súbor:</label>
