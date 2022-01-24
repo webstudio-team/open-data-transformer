@@ -195,20 +195,27 @@ export default function OpenDataTransformerApp() {
             );
           })}
       </form>
-
-      <p>
-        <button onClick={handleDownloadCsv}>Download csv</button>
-      </p>
-      <p>
-        <button onClick={handleDownloadMetadata}>Download metadata</button>
-      </p>
-      <p>
-        Don't forget to{" "}
-        <a href="https://csvw.opendata.cz/" target="_blank" rel={"noreferrer"}>
-          validate
-        </a>{" "}
-        your dataset...
-      </p>
+      {!!columnsData.length && (
+        <>
+          <p>
+            <button onClick={handleDownloadCsv}>Download csv</button>
+          </p>
+          <p>
+            <button onClick={handleDownloadMetadata}>Download metadata</button>
+          </p>
+          <p>
+            Don't forget to{" "}
+            <a
+              href="https://csvw.opendata.cz/"
+              target="_blank"
+              rel={"noreferrer"}
+            >
+              validate
+            </a>{" "}
+            your dataset...
+          </p>
+        </>
+      )}
     </div>
   );
 }
