@@ -33,7 +33,7 @@ export default function OpenDataTransformerApp() {
     source: "",
   });
 
-  const [tags, setTags] = useState(["example tag"]);
+  const [tags, setTags] = useState([]);
 
   const inputRef = useRef();
 
@@ -41,7 +41,7 @@ export default function OpenDataTransformerApp() {
     return {
       ...formData,
       ...fileData,
-      ...tags,
+      keywords: tags,
       columns: columnsData,
     };
   }
