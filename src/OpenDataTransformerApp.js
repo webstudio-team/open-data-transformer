@@ -159,12 +159,18 @@ export default function OpenDataTransformerApp() {
     setColumnsData(newState);
   }
 
+
   return (
     <div className="container">
       <h1>Open Data Transformer</h1>
 
       <form onSubmit={handleSubmit}>
-        <FilePicker inputRef={inputRef} handleFormChange={handleFormChange} />
+        <FilePicker
+            inputRef={inputRef}
+            handleFormChange={handleFormChange}
+            formData={formData}
+            setFormData={setFormData}
+        />
         {!!columnsData.length && (
           <div>
             <h2>File's data</h2>

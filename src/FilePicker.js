@@ -1,4 +1,15 @@
-export default function FilePicker({ inputRef, handleFormChange }) {
+import {useEffect} from "react";
+
+export default function FilePicker({ inputRef, handleFormChange, setFormData, formData }) {
+
+    useEffect(() => {
+        setFormData({
+            ...formData,
+            encoding: document.getElementById("encoding").value,
+            delimiter: document.getElementById("delimiter").value,
+        })
+    }, [])
+
   return (
     <div>
       <label htmlFor="file">Nahrajte súbor:</label>
@@ -9,7 +20,6 @@ export default function FilePicker({ inputRef, handleFormChange }) {
       <label htmlFor="encoding">Kódování:</label>
       <div>
         <select onChange={handleFormChange} name="encoding" id="encoding">
-          <option value="">none</option>
           <option value="win1250">win1250</option>
           <option value="utf8">utf8</option>
         </select>
@@ -18,7 +28,6 @@ export default function FilePicker({ inputRef, handleFormChange }) {
       <label htmlFor="delimiter">Oddělovač:</label>
       <div>
         <select onChange={handleFormChange} name="delimiter" id="delimiter">
-          <option value="">none</option>
           <option value=";">;</option>
           <option value=",">,</option>
         </select>
@@ -30,3 +39,4 @@ export default function FilePicker({ inputRef, handleFormChange }) {
     </div>
   );
 }
+
