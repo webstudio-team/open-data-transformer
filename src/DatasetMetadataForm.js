@@ -2,10 +2,15 @@ import "@pathofdev/react-tag-input/build/index.css";
 
 import ReactTagInput from "@pathofdev/react-tag-input";
 
-export default function DatasetMetadataForm({ fileData, setFileData, tags, setTags }) {
-  const handleFileFormChange = (event) => {
-    setFileData({
-      ...fileData,
+export default function DatasetMetadataForm({
+  datasetMetadata,
+  setDatasetMetadata,
+  tags,
+  setTags,
+}) {
+  const handleChange = (event) => {
+    setDatasetMetadata({
+      ...datasetMetadata,
 
       [event.target.name]: event.target.value,
     });
@@ -14,22 +19,22 @@ export default function DatasetMetadataForm({ fileData, setFileData, tags, setTa
     <div>
       <label htmlFor="title">Titulek:</label>
       <div>
-        <input name="title" type="text" onChange={handleFileFormChange} />
+        <input name="title" type="text" onChange={handleChange} />
       </div>
       <br />
       <label htmlFor="description">Popis:</label>
       <div>
-        <input name="description" type="text" onChange={handleFileFormChange} />
+        <input name="description" type="text" onChange={handleChange} />
       </div>
       <br />
       <label htmlFor="filename">Název souboru:</label>
       <div>
-        <input name="filename" type="text" onChange={handleFileFormChange} />
+        <input name="filename" type="text" onChange={handleChange} />
       </div>
       <br />
       <label htmlFor="source">Zdroj:</label>
       <div>
-        <input name="source" type="text" onChange={handleFileFormChange} />
+        <input name="source" type="text" onChange={handleChange} />
       </div>
       <br />
       <label htmlFor="tags">Tagy:</label>

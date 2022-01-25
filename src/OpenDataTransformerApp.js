@@ -14,7 +14,7 @@ import * as ponyfill from "web-streams-polyfill/ponyfill";
 import streamSaver from "streamsaver";
 import csvSchemaGenerator from "./modules/csvSchemaGenerator";
 import ColumnForm from "./ColumnForm";
-import FilePicker from "./FilePicker";
+import CsvPicker from "./CsvPicker";
 import DatasetMetadataForm from "./DatasetMetadataForm";
 
 streamSaver.WritableStream = ponyfill.WritableStream;
@@ -23,14 +23,14 @@ export default function OpenDataTransformerApp() {
   const [encoding, setEncoding] = useState();
   const [delimiter, setDelimiter] = useState();
   const [overrideHeaders, setOverrideHeaders] = useState(false);
-  const [columnsData, setColumnsData] = useState([]);
-  const [fileData, setFileData] = useState({
+  const [datasetMetadata, setDatasetMetadata] = useState({
     title: "",
     description: "",
     filename: "",
     source: "",
   });
   const [tags, setTags] = useState([]);
+  const [columnsMetadata, setColumnsMetadata] = useState([]);
 
   const inputRef = useRef();
 
@@ -39,9 +39,9 @@ export default function OpenDataTransformerApp() {
       encoding,
       delimiter,
       overrideHeaders,
-      ...fileData,
+      ...datasetMetadata,
       keywords: tags,
-      columns: columnsData,
+      columns: columnsMetadata,
     };
   }
 
@@ -133,19 +133,19 @@ export default function OpenDataTransformerApp() {
             description: "",
           };
         });
-        setColumnsData(columnsData);
+        setColumnsMetadata(columnsData);
       });
   }
 
   function setColumnState(index, payload) {
-    let oldState = columnsData;
+    let oldState = columnsMetadata;
     let newColumnState = {
       ...oldState[index],
       ...payload,
     };
     let newState = oldState;
     newState[index] = newColumnState;
-    setColumnsData(newState);
+    setColumnsMetadata(newState);
   }
 
   return (
@@ -153,31 +153,31 @@ export default function OpenDataTransformerApp() {
       <h1>Open Data Transformer</h1>
 
       <form onSubmit={handleSubmit}>
-        <FilePicker
+        <CsvPicker
           inputRef={inputRef}
           setEncoding={setEncoding}
           setDelimiter={setDelimiter}
         />
-        {!!columnsData.length && (
+        {!!columnsMetadata.length && (
           <div>
             <h2>File's data</h2>
           </div>
         )}
-        {!!columnsData.length && (
+        {!!columnsMetadata.length && (
           <DatasetMetadataForm
-            setFileData={setFileData}
-            fileData={fileData}
+            datasetMetadata={datasetMetadata}
+            setDatasetMetadata={setDatasetMetadata}
             tags={tags}
             setTags={setTags}
           />
         )}
-        {!!columnsData.length && (
+        {!!columnsMetadata.length && (
           <div>
             <h2>Columns data</h2>
           </div>
         )}
-        {!!columnsData.length &&
-          columnsData.map((item, index) => {
+        {!!columnsMetadata.length &&
+          columnsMetadata.map((item, index) => {
             return (
               <ColumnForm
                 index={index}
@@ -188,7 +188,7 @@ export default function OpenDataTransformerApp() {
             );
           })}
       </form>
-      {!!columnsData.length && (
+      {!!columnsMetadata.length && (
         <>
           <p>
             <button onClick={handleDownloadCsv}>Download csv</button>

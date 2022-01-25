@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 
-export default function FilePicker({ inputRef, setEncoding, setDelimiter }) {
+export default function CsvPicker({ inputRef, setEncoding, setDelimiter }) {
   const encodingRef = useRef();
   const delimiterRef = useRef();
 
