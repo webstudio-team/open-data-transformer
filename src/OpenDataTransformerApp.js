@@ -22,7 +22,6 @@ streamSaver.WritableStream = ponyfill.WritableStream;
 export default function OpenDataTransformerApp() {
   const [encoding, setEncoding] = useState();
   const [delimiter, setDelimiter] = useState();
-  const [overrideHeaders, setOverrideHeaders] = useState(false);
   const [datasetMetadata, setDatasetMetadata] = useState({
     title: "",
     description: "",
@@ -36,9 +35,9 @@ export default function OpenDataTransformerApp() {
 
   function getConfig() {
     return {
-      encoding,
-      delimiter,
-      overrideHeaders,
+      encoding: encoding,
+      delimiter: delimiter,
+      overrideHeaders: true,
       ...datasetMetadata,
       keywords: tags,
       columns: columnsMetadata,
@@ -111,7 +110,7 @@ export default function OpenDataTransformerApp() {
       return iconv.decodeStream(encoding);
     };
     const parser = createParser(
-      { delimiter: delimiter, overrideHeaders: overrideHeaders },
+      { delimiter: delimiter, overrideHeaders: false },
       parse
     );
 
