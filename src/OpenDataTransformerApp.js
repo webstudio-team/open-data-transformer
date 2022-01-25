@@ -20,11 +20,9 @@ import DatasetMetadataForm from "./DatasetMetadataForm";
 streamSaver.WritableStream = ponyfill.WritableStream;
 
 export default function OpenDataTransformerApp() {
-  const [formData, setFormData] = useState({
-    encoding: "",
-    delimiter: "",
-    overrideHeaders: false,
-  });
+  const [encoding, setEncoding] = useState();
+  const [delimiter, setDelimiter] = useState();
+  const [overrideHeaders, setOverrideHeaders] = useState(false);
   const [columnsData, setColumnsData] = useState([]);
   const [fileData, setFileData] = useState({
     title: "",
@@ -32,14 +30,15 @@ export default function OpenDataTransformerApp() {
     filename: "",
     source: "",
   });
-
   const [tags, setTags] = useState([]);
 
   const inputRef = useRef();
 
   function getConfig() {
     return {
-      ...formData,
+      encoding,
+      delimiter,
+      overrideHeaders,
       ...fileData,
       keywords: tags,
       columns: columnsData,
@@ -93,21 +92,8 @@ export default function OpenDataTransformerApp() {
     writer.close();
   }
 
-  const handleFormChange = (event) => {
-    setFormData({
-      ...formData,
-
-      [event.target.name]: event.target.value,
-    });
-  };
-
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (formData.encoding === "" || formData.delimiter === "") {
-      console.log("Please select delimiter or encoding.");
-      return;
-    }
-
     loadCsvHeaders();
   };
 
@@ -122,9 +108,12 @@ export default function OpenDataTransformerApp() {
     const reader = (file) => fileReaderStream(file);
     const decoder = () => {
       iconv.enableStreamingAPI(stream);
-      return iconv.decodeStream(formData.encoding);
+      return iconv.decodeStream(encoding);
     };
-    const parser = createParser(formData, parse);
+    const parser = createParser(
+      { delimiter: delimiter, overrideHeaders: overrideHeaders },
+      parse
+    );
 
     let headers = [];
     reader(file)
@@ -159,17 +148,15 @@ export default function OpenDataTransformerApp() {
     setColumnsData(newState);
   }
 
-
   return (
     <div className="container">
       <h1>Open Data Transformer</h1>
 
       <form onSubmit={handleSubmit}>
         <FilePicker
-            inputRef={inputRef}
-            handleFormChange={handleFormChange}
-            formData={formData}
-            setFormData={setFormData}
+          inputRef={inputRef}
+          setEncoding={setEncoding}
+          setDelimiter={setDelimiter}
         />
         {!!columnsData.length && (
           <div>

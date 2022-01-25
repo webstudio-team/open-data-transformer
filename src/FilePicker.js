@@ -1,14 +1,13 @@
-import {useEffect} from "react";
+import { useEffect, useRef } from "react";
 
-export default function FilePicker({ inputRef, handleFormChange, setFormData, formData }) {
+export default function FilePicker({ inputRef, setEncoding, setDelimiter }) {
+  const encodingRef = useRef();
+  const delimiterRef = useRef();
 
-    useEffect(() => {
-        setFormData({
-            ...formData,
-            encoding: document.getElementById("encoding").value,
-            delimiter: document.getElementById("delimiter").value,
-        })
-    }, [])
+  useEffect(() => {
+    setEncoding(encodingRef.current.value);
+    setDelimiter(delimiterRef.current.value);
+  }, []);
 
   return (
     <div>
@@ -19,7 +18,12 @@ export default function FilePicker({ inputRef, handleFormChange, setFormData, fo
       <br />
       <label htmlFor="encoding">Kódování:</label>
       <div>
-        <select onChange={handleFormChange} name="encoding" id="encoding">
+        <select
+          ref={encodingRef}
+          onChange={(e) => setEncoding(e.target.value)}
+          name="encoding"
+          id="encoding"
+        >
           <option value="win1250">win1250</option>
           <option value="utf8">utf8</option>
         </select>
@@ -27,7 +31,12 @@ export default function FilePicker({ inputRef, handleFormChange, setFormData, fo
       <br />
       <label htmlFor="delimiter">Oddělovač:</label>
       <div>
-        <select onChange={handleFormChange} name="delimiter" id="delimiter">
+        <select
+          ref={delimiterRef}
+          onChange={(e) => setDelimiter(e.target.value)}
+          name="delimiter"
+          id="delimiter"
+        >
           <option value=";">;</option>
           <option value=",">,</option>
         </select>
@@ -39,4 +48,3 @@ export default function FilePicker({ inputRef, handleFormChange, setFormData, fo
     </div>
   );
 }
-
