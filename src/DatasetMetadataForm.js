@@ -29,7 +29,7 @@ export default function DatasetMetadataForm({
       <br />
       <label htmlFor="filename">Název souboru:</label>
       <div>
-        <input name="filename" type="text" onChange={handleChange} />
+        <input name="filename" type="text" onChange={handleChange} placeholder={"dataset.csv"} />
       </div>
       <br />
       <label htmlFor="source">Zdroj:</label>
