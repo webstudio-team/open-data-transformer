@@ -53,8 +53,6 @@ export default function OpenDataTransformerApp() {
   function handleDownloadCsv() {
     const config = getConfig();
 
-    const file = inputRef.current.files[0];
-
     if (file === undefined) {
       console.log("Please select file.");
       return;
