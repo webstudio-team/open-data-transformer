@@ -16,6 +16,7 @@ import csvSchemaGenerator from "./modules/csvSchemaGenerator";
 import ColumnForm from "./ColumnForm";
 import CsvPicker from "./CsvPicker";
 import DatasetMetadataForm from "./DatasetMetadataForm";
+import DragAndDrop from "./DragAndDrop";
 
 streamSaver.WritableStream = ponyfill.WritableStream;
 
@@ -30,6 +31,7 @@ export default function OpenDataTransformerApp() {
   });
   const [tags, setTags] = useState([]);
   const [columnsMetadata, setColumnsMetadata] = useState([]);
+  const [file, setFile] = useState();
 
   const inputRef = useRef();
 
@@ -97,8 +99,6 @@ export default function OpenDataTransformerApp() {
   };
 
   function loadCsvHeaders() {
-    const file = inputRef.current.files[0];
-
     if (file === undefined) {
       console.log("Please select file.");
       return;
@@ -147,15 +147,20 @@ export default function OpenDataTransformerApp() {
     setColumnsMetadata(newState);
   }
 
+  function DragAnDropOnClick() {
+    inputRef.current.click();
+  }
+
   return (
     <div className="container">
       <h1>Open Data Transformer</h1>
-
+      <DragAndDrop setFile={setFile} onClick={DragAnDropOnClick} />
       <form onSubmit={handleSubmit}>
         <CsvPicker
           inputRef={inputRef}
           setEncoding={setEncoding}
           setDelimiter={setDelimiter}
+          setFile={setFile}
         />
         {!!columnsMetadata.length && (
           <div>

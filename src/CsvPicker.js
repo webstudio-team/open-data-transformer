@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 
-export default function CsvPicker({ inputRef, setEncoding, setDelimiter }) {
+export default function CsvPicker({ inputRef, setEncoding, setDelimiter, setFile }) {
   const encodingRef = useRef();
   const delimiterRef = useRef();
 
@@ -13,7 +13,7 @@ export default function CsvPicker({ inputRef, setEncoding, setDelimiter }) {
     <div>
       <label htmlFor="file">Nahrajte súbor:</label>
       <div>
-        <input name="file" type="file" ref={inputRef} />
+        <input name="file" type="file" ref={inputRef} onChange={() => setFile(inputRef.current.files[0])}/>
       </div>
       <br />
       <label htmlFor="encoding">Kódování:</label>
