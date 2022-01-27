@@ -22,7 +22,7 @@ function parseValue(value, datatype) {
     case "float":
       return parseFloat(value);
     case "boolean":
-      return [1, "1", true, "true"].includes(value) ? 1 : 0;
+      return [1, "1", true, "true"].includes(value);
     default:
       return value;
   }
