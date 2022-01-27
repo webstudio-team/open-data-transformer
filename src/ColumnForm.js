@@ -22,8 +22,8 @@ export default function ColumnForm({ index, columnName, handleChange }) {
         <select name="datatype" id="datatype" onChange={handleInput}>
           <option value="string">string</option>
           <option value="integer">integer</option>
-          <option value="float">integer</option>
-          <option value="boolean">integer</option>
+          <option value="float">float</option>
+          <option value="boolean">boolean</option>
         </select>
       </div>
       <br />
