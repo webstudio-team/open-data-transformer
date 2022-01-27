@@ -16,7 +16,7 @@ function parseValue(value, datatype) {
 
   switch (datatype) {
     case "string":
-      return value;
+      return value.trim();
     case "integer":
       return parseInt(value);
     case "float":
