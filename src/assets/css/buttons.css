@@ -1,0 +1,50 @@
+.button,
+.button--download,
+.button--submit,
+.button--validate
+{
+    background: #2E5D7F;
+    box-shadow: -5px -2px 20px rgba(0, 0, 0, 0.1), 2px 5px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    color: #fff;
+    border: none;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+}
+.button--download {
+    flex-grow: 1;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.button--download img {
+    padding-right: 10px;
+    vertical-align: middle;
+}
+
+.button--submit {
+    height: 100%;
+    background: #2E5D7F;
+    box-shadow: -5px -2px 20px rgba(0, 0, 0, 0.1), 2px 5px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    color: #fff;
+    padding-left: 80px;
+    padding-right: 80px;
+}
+
+.button--validate {
+    color: #2E5D7F;
+    background: #FFFFFF;
+    padding: 10px 30px;
+    text-decoration: none;
+    font-weight: bold;
+}
+.button--cookies {
+    appearance: none;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    cursor: pointer;
+    padding: 0;
+    color: #003A63;
+}
