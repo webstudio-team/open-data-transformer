@@ -1,4 +1,4 @@
-export default function ColumnForm({ alpha, index, columnName, handleChange }) {
+export default function ColumnForm({ index, columnName, handleChange }) {
   const handleInput = (event) => {
     handleChange(index, {
       [event.target.name]: event.target.value,
@@ -7,9 +7,6 @@ export default function ColumnForm({ alpha, index, columnName, handleChange }) {
 
   return (
     <div className="form-column">
-      <div className="form-column__header">
-        <div>{alpha}</div>Sloupec
-      </div>
       <div className="form-column__wrapper">
         <div className="form-column__name">
           <label htmlFor="name">Název:</label>

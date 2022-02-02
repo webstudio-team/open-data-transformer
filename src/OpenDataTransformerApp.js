@@ -156,12 +156,6 @@ export default function OpenDataTransformerApp() {
     inputRef.current.click();
   }
 
-  function createAlphabet() {
-    const alpha = Array.from(Array(26)).map((e, i) => i + 65);
-    const alphabet = alpha.map((x) => String.fromCharCode(x));
-    return alphabet;
-  }
-
   return (
     <>
       <div className="content">
@@ -218,19 +212,21 @@ export default function OpenDataTransformerApp() {
                   <h2 className="form-column__heading">Data sloupců</h2>
                 </div>
               )}
-              {!!columnsMetadata.length &&
-                columnsMetadata.map((item, index) => {
-                  const alpha = createAlphabet()[index];
-                  return (
-                    <ColumnForm
-                      alpha={alpha}
-                      index={index}
-                      columnName={item.name}
-                      key={index}
-                      handleChange={setColumnState}
-                    />
-                  );
-                })}
+              <ul>
+                {!!columnsMetadata.length &&
+                  columnsMetadata.map((item, index) => {
+                    return (
+                      <li key={item.name}>
+                        <ColumnForm
+                          index={index}
+                          columnName={item.name}
+                          key={index}
+                          handleChange={setColumnState}
+                        />
+                      </li>
+                    );
+                  })}
+              </ul>
             </form>
           </div>
         </div>
