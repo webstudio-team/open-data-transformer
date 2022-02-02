@@ -1,4 +1,8 @@
-export default function DragAndDrop({ setFile, onClick }) {
+import "./assets/css/DragAndDrop.css";
+
+import upload from "./assets/images/upload.svg";
+
+export default function DragAndDrop({ file, setFile, onClick }) {
   const handleDragOver = (e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -14,12 +18,16 @@ export default function DragAndDrop({ setFile, onClick }) {
 
   return (
     <div
-      className="drag-drop-zone"
+      className={`drag-drop-zone${file ? "--hidden" : ""}`}
       onDragOver={(e) => handleDragOver(e)}
       onDrop={(e) => handleDrop(e)}
       onClick={onClick}
     >
-      <p>Drag files here to upload</p>
+      <img src={upload} alt="upload" />
+      <p>
+        Klikněte pro nahrání <strong>CSV. souboru</strong> nebo ho sem
+        přetáhněte
+      </p>
     </div>
   );
 }

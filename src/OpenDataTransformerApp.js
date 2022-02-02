@@ -1,5 +1,11 @@
-import "./App.css";
-import "./ODT.css";
+import "./assets/css/app.css";
+import "./assets/css/footer.css";
+import download from "./assets/images/download.svg";
+
+import logoMzcr from "./assets/images/logo-data-mzcr.svg";
+import logoUzis from "./assets/images/logo-uzis.svg";
+import logoMu from "./assets/images/logo-iba-mu.svg";
+import logoWebStudio from "./assets/images/web_studio.svg";
 
 import { useRef } from "react";
 import { useState } from "react";
@@ -17,6 +23,7 @@ import ColumnForm from "./ColumnForm";
 import CsvPicker from "./CsvPicker";
 import DatasetMetadataForm from "./DatasetMetadataForm";
 import DragAndDrop from "./DragAndDrop";
+import Button from "./Button";
 
 streamSaver.WritableStream = ponyfill.WritableStream;
 
@@ -149,68 +156,207 @@ export default function OpenDataTransformerApp() {
     inputRef.current.click();
   }
 
+  function createAlphabet() {
+    const alpha = Array.from(Array(26)).map((e, i) => i + 65);
+    const alphabet = alpha.map((x) => String.fromCharCode(x));
+    return alphabet;
+  }
+
   return (
-    <div className="container">
-      <h1>Open Data Transformer</h1>
-      <DragAndDrop setFile={setFile} onClick={DragAnDropOnClick} />
-      <form onSubmit={handleSubmit}>
-        <CsvPicker
-          inputRef={inputRef}
-          setEncoding={setEncoding}
-          setDelimiter={setDelimiter}
-          setFile={setFile}
-        />
-        {!!columnsMetadata.length && (
-          <div>
-            <h2>File's data</h2>
+    <>
+      <div className="content">
+        <div className="wrapper">
+          <div className="container">
+            <div className="header">
+              <img src={logoMzcr} alt="logo-data-mzcr" />
+              <h1>Open Data Transformer</h1>
+            </div>
           </div>
-        )}
-        {!!columnsMetadata.length && (
-          <DatasetMetadataForm
-            datasetMetadata={datasetMetadata}
-            setDatasetMetadata={setDatasetMetadata}
-            tags={tags}
-            setTags={setTags}
-          />
-        )}
-        {!!columnsMetadata.length && (
-          <div>
-            <h2>Columns data</h2>
-          </div>
-        )}
-        {!!columnsMetadata.length &&
-          columnsMetadata.map((item, index) => {
-            return (
-              <ColumnForm
-                index={index}
-                columnName={item.name}
-                key={index}
-                handleChange={setColumnState}
+        </div>
+        <div className="wrapper">
+          <div className="container">
+            <DragAndDrop
+              file={file}
+              setFile={setFile}
+              onClick={DragAnDropOnClick}
+            />
+
+            <form onSubmit={handleSubmit}>
+              <CsvPicker
+                inputRef={inputRef}
+                setEncoding={setEncoding}
+                setDelimiter={setDelimiter}
+                file={file}
+                setFile={setFile}
               />
-            );
-          })}
-      </form>
-      {!!columnsMetadata.length && (
-        <>
-          <p>
-            <button onClick={handleDownloadCsv}>Download csv</button>
-          </p>
-          <p>
-            <button onClick={handleDownloadMetadata}>Download metadata</button>
-          </p>
-          <p>
-            Don't forget to{" "}
+              {!!columnsMetadata.length && (
+                <div>
+                  <h2>Data souboru</h2>
+                </div>
+              )}
+              {!!columnsMetadata.length && (
+                <DatasetMetadataForm
+                  datasetMetadata={datasetMetadata}
+                  setDatasetMetadata={setDatasetMetadata}
+                  tags={tags}
+                  setTags={setTags}
+                />
+              )}
+            </form>
+          </div>
+        </div>
+
+        <div
+          className={`wrapper${
+            !!columnsMetadata.length ? "__column-form" : ""
+          }`}
+        >
+          <div className="container">
+            <form>
+              {!!columnsMetadata.length && (
+                <div>
+                  <h2 className="form-column__heading">Data sloupců</h2>
+                </div>
+              )}
+              {!!columnsMetadata.length &&
+                columnsMetadata.map((item, index) => {
+                  const alpha = createAlphabet()[index];
+                  return (
+                    <ColumnForm
+                      alpha={alpha}
+                      index={index}
+                      columnName={item.name}
+                      key={index}
+                      handleChange={setColumnState}
+                    />
+                  );
+                })}
+            </form>
+          </div>
+        </div>
+
+        {!!columnsMetadata.length && (
+          <div className="wrapper__download">
+            <div className="container">
+              <>
+                <div className="form-buttons">
+                  <Button
+                    type="download"
+                    name={download}
+                    onClick={handleDownloadCsv}
+                  >
+                    Download csv
+                  </Button>
+                  <Button
+                    type="download"
+                    name={download}
+                    onClick={handleDownloadMetadata}
+                  >
+                    Download metadata
+                  </Button>
+                </div>
+
+                <div className="form-validate">
+                  <p>
+                    Před stažením si nezapomeňte validovat váš datový soubor
+                  </p>
+                  <a
+                    href="https://csvw.opendata.cz/"
+                    target="_blank"
+                    rel={"noreferrer"}
+                    className="button--validate"
+                  >
+                    Validovat data
+                  </a>
+                </div>
+              </>
+            </div>
+          </div>
+        )}
+      </div>
+
+      <footer>
+        <div>
+          <div className="container">
+            <div className="footer--logo">
+              <a
+                href="http://www.iba.muni.cz/"
+                target="_blank"
+                rel="noreferrer noopener"
+                title="Institut biostatistiky a analýz Lékařské fakulty Masarykovy univerzity"
+                aria-label="Institut biostatistiky a analýz Lékařské fakulty Masarykovy univerzity"
+              >
+                <img
+                  src={logoMu}
+                  alt="Institut biostatistiky a analýz Lékařské fakulty Masarykovy univerzity"
+                />
+              </a>
+              <a
+                href="https://www.uzis.cz/"
+                target="_blank"
+                rel="noreferrer noopener"
+                title="Ústav zdravotnických informací a statistiky České republiky"
+                aria-label="Ústav zdravotnických informací a statistiky České republiky"
+              >
+                <img
+                  src={logoUzis}
+                  alt="Ústav zdravotnických informací a statistiky České republiky"
+                />
+              </a>
+              <div>
+                společné pracoviště <br />{" "}
+                <a
+                  href="http://www.iba.muni.cz/"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  title="Institut biostatistiky a analýz Lékařské fakulty Masarykovy univerzity"
+                  aria-label="Institut biostatistiky a analýz Lékařské fakulty Masarykovy univerzity"
+                >
+                  IBA LF MU
+                </a>{" "}
+                a{" "}
+                <a
+                  href="https://www.uzis.cz/"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  title="Ústav zdravotnických informací a statistiky ČR"
+                  aria-label="Ústav zdravotnických informací a statistiky České republiky"
+                >
+                  ÚZIS ČR
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="wrapper__footer">
+          <div className="container">
+            <div>
+              <button
+                className="button--cookies"
+                aria-label="Prohlédnout si nastavení cookies souborů"
+              >
+                COOKIES
+              </button>
+              <span className="footer--vertical"></span>
+              <a
+                href="https://www.uzis.cz/index.php?pg=kontakt"
+                target="_blank"
+              >
+                HELPDESK
+              </a>
+            </div>
             <a
-              href="https://csvw.opendata.cz/"
+              href="https://webstudio.team/"
               target="_blank"
-              rel={"noreferrer"}
+              rel="noreferrer noopener"
+              title="webstudio.team"
+              aria-label="Webová stránka webstudio.team (externí odkaz, nová záložka)"
             >
-              validate
-            </a>{" "}
-            your dataset...
-          </p>
-        </>
-      )}
-    </div>
+              <img src={logoWebStudio} alt="Web studio" />
+            </a>
+          </div>
+        </div>
+      </footer>
+    </>
   );
 }

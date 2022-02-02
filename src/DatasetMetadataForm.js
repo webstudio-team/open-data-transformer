@@ -1,4 +1,5 @@
 import "@pathofdev/react-tag-input/build/index.css";
+import "./assets/css/tagInput.css"
 
 import ReactTagInput from "@pathofdev/react-tag-input";
 
@@ -15,6 +16,7 @@ export default function DatasetMetadataForm({
       [event.target.name]: event.target.value,
     });
   };
+
   return (
     <div>
       <label htmlFor="title">Titulek:</label>
@@ -42,6 +44,7 @@ export default function DatasetMetadataForm({
         <ReactTagInput
           name="tags"
           tags={tags}
+          placeholder="Zadejte a stiskněte ENTER"
           onChange={(newTags) => setTags(newTags)}
         />
       </div>
