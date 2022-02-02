@@ -1,13 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
-import App from "./App";
+import "./assets/css/index.css";
 import OpenDataTransformerApp from "./OpenDataTransformerApp";
 import reportWebVitals from "./reportWebVitals";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
     <OpenDataTransformerApp />
   </React.StrictMode>,
   document.getElementById("root")
