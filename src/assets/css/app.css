@@ -1,0 +1,97 @@
+body {
+    background: #F2F5F7;
+    font-family: 'Roboto', sans-serif;
+    color: #003A63;
+    height: 100%;
+    font-size: 16px;
+    font-weight: bold;
+}
+#root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+.content {
+    flex: 1;
+}
+.container {
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+.header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+    text-align: center;
+}
+.header img {
+    width: 100%;
+    max-width: 290px;
+}
+.header h1 {
+    font-family: 'Share Tech Mono', monospace;
+}
+.wrapper {
+    padding-bottom: 20px;
+}
+.wrapper__column-form {
+    background: #fff;
+    padding: 20px 0;
+}
+.wrapper__download {
+    padding-top: 40px;
+    padding-bottom: 20px;
+}
+
+.logos {
+    display: flex;
+}
+
+.hide-text {
+   overflow: hidden;
+   padding: 0; /* 1 */
+   text-indent: 101%;
+   white-space: nowrap;
+}
+
+.visually-hidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+@media only screen and (min-width: 576px) {
+    .container {
+        max-width: 540px;
+    }
+    .header {
+        padding-top: 200px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .container {
+        max-width: 720px;
+    }
+}
+
+@media only screen and (min-width: 1170px) {
+    .container {
+        max-width: 1150px;
+    }
+}
+
+@media only screen and (min-width: 1440px) {
+    .container {
+        max-width: 1410px;
+    }
+}
