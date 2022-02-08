@@ -142,14 +142,11 @@ export default function OpenDataTransformerApp() {
   }
 
   function setColumnState(index, payload) {
-    let oldState = columnsMetadata;
-    let newColumnState = {
-      ...oldState[index],
+    columnsMetadata[index] = {
+      ...columnsMetadata[index],
       ...payload,
     };
-    let newState = oldState;
-    newState[index] = newColumnState;
-    setColumnsMetadata(newState);
+    setColumnsMetadata(columnsMetadata);
   }
 
   function DragAnDropOnClick() {

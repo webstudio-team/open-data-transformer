@@ -26,8 +26,9 @@ function run() {
   console.log("Generating csv...");
   reader.pipe(decoder).pipe(parser).pipe(transformer).pipe(writer);
   console.log("Generating schema...");
+  const schemaFilename = config.filename + "-metadata.json";
   fs.writeFile(
-    `${config.filename}-metadata.json`,
+    schemaFilename,
     JSON.stringify(csvSchemaGenerator.generate(config), 0, 4),
     (err) => {
       if (err) {
@@ -35,6 +36,8 @@ function run() {
       }
     }
   );
+  console.log(`Dataset generated: ${config.filename}`);
+  console.log(`Schema generated: ${schemaFilename}`);
   console.log("Done!");
 }
 
