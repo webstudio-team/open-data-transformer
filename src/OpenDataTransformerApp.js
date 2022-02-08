@@ -167,7 +167,7 @@ export default function OpenDataTransformerApp() {
             </div>
           </div>
         </div>
-        <div className="wrapper">
+        <div className="wrapper__metadata-form">
           <div className="container">
             <DragAndDrop
               file={file}
@@ -194,6 +194,7 @@ export default function OpenDataTransformerApp() {
                   setDatasetMetadata={setDatasetMetadata}
                   tags={tags}
                   setTags={setTags}
+                  limit={500}
                 />
               )}
             </form>
@@ -333,7 +334,7 @@ export default function OpenDataTransformerApp() {
               >
                 COOKIES
               </button>
-              <span className="footer--vertical"></span>
+              <span className="footer--vertical" />
               <a
                 href="https://www.uzis.cz/index.php?pg=kontakt"
                 target="_blank"
