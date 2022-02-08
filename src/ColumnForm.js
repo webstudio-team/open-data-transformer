@@ -36,7 +36,12 @@ export default function ColumnForm({ index, columnName, handleChange }) {
       <div className="form-column__description">
         <label htmlFor="description">Popis:</label>
         <div>
-          <input name="description" type="text" onChange={handleInput} />
+          <input
+            name="description"
+            type="text"
+            onChange={handleInput}
+            placeholder="Maximálně 200 znaků"
+          />
         </div>
       </div>
     </div>

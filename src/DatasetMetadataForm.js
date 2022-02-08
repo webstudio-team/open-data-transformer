@@ -21,25 +21,29 @@ export default function DatasetMetadataForm({
   };
 
   const setFormattedContent = useCallback(
-
     (event) => {
       setDatasetMetadata({
         ...datasetMetadata,
         [event.target.name]: event.target.value.slice(0, limit),
       });
     },
-      [limit, setDatasetMetadata]
+    [limit, setDatasetMetadata]
   );
 
   return (
     <div className="metadata-from">
-        <div className="metadata-from__heading">
-            <h2>Popis datové sady</h2>
-        </div>
+      <div className="metadata-from__heading">
+        <h2>Popis datové sady</h2>
+      </div>
       <div className="metadata-from__title">
         <label htmlFor="title">Titulek:</label>
         <div>
-          <input name="title" type="text" onChange={handleChange} />
+          <input
+            name="title"
+            type="text"
+            onChange={handleChange}
+            placeholder="Například “COVID, Červenec 2021”"
+          />
         </div>
       </div>
       <div className="metadata-from__filename">
@@ -49,14 +53,19 @@ export default function DatasetMetadataForm({
             name="filename"
             type="text"
             onChange={handleChange}
-            placeholder={"dataset.csv"}
+            placeholder="Například “OD_cervenec_21”.csv"
           />
         </div>
       </div>
       <div className="metadata-from__source">
         <label htmlFor="source">Zdroj:</label>
         <div>
-          <input name="source" type="text" onChange={handleChange} />
+          <input
+            name="source"
+            type="text"
+            onChange={handleChange}
+            placeholder="Například “něco”"
+          />
         </div>
       </div>
       <div className="metadata-from__tags">
@@ -82,7 +91,12 @@ export default function DatasetMetadataForm({
             name="description"
             value={datasetMetadata.description}
             onChange={setFormattedContent}
-            style={limit === datasetMetadata.description.length ? {border: "1px solid #D31145"} : {}}
+            placeholder="Maximálně 500 znaků"
+            style={
+              limit === datasetMetadata.description.length
+                ? { border: "1px solid #D31145" }
+                : {}
+            }
           />
         </div>
         {limit === datasetMetadata.description.length ? (

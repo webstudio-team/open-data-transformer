@@ -21,6 +21,14 @@ textarea{
   width: 100%;
   font-size: 16px;
 }
+input::placeholder {
+  color: #CCCCCC;
+}
+
+textarea::placeholder {
+  color: #CCCCCC;
+}
+
 label {
   display: inline-block;
   padding-bottom: 5px;
