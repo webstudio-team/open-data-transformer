@@ -46,6 +46,9 @@ body {
   padding-top: 40px;
   padding-bottom: 20px;
 }
+.wrapper__metadata-form {
+  padding-bottom: 40px;
+}
 
 .logos {
   display: flex;

@@ -11,7 +11,8 @@ select {
   padding-right: calc(10px + 40px);
   cursor: pointer;
 }
-input {
+input,
+textarea{
   background: #ffffff;
   border: 1px solid #d5dbe3;
   border-radius: 5px;

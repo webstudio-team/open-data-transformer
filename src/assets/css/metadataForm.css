@@ -1,0 +1,53 @@
+.metadata-from {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 20px;
+}
+.metadata-from__heading {
+  margin-top: 40px;
+  border-top: 1px solid #D5DBE3;
+}
+.metadata-from__heading > h2 {
+  margin-bottom: 0;
+}
+
+@media only screen and (min-width: 576px) {
+  .metadata-from {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+  }
+  .metadata-from__heading {
+    grid-column: span 2;
+    margin-top: 60px;
+    border-top: 1px solid #D5DBE3;
+  }
+  .metadata-from__title {
+    grid-column: span 1;
+  }
+  .metadata-from__source {
+    grid-column: span 1;
+  }
+  .metadata-from__filename {
+    grid-column: span 1;
+  }
+  .metadata-from__tags {
+    grid-column: span 1;
+  }
+  .metadata-from__description {
+    grid-column: span 2;
+  }
+}
+.metadata-from__description--label {
+  display: flex;
+  justify-content: space-between;
+}
+
+.metadata-from__description--label > div {
+  color: #CCCCCC;
+}
+
+.warning {
+  padding-top: 5px;
+  color:#D31145;
+}

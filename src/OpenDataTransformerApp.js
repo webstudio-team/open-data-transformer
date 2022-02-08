@@ -184,11 +184,6 @@ export default function OpenDataTransformerApp() {
                 setFile={setFile}
               />
               {!!columnsMetadata.length && (
-                <div>
-                  <h2>Data souboru</h2>
-                </div>
-              )}
-              {!!columnsMetadata.length && (
                 <DatasetMetadataForm
                   datasetMetadata={datasetMetadata}
                   setDatasetMetadata={setDatasetMetadata}

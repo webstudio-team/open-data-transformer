@@ -33,6 +33,9 @@ export default function DatasetMetadataForm({
 
   return (
     <div className="metadata-from">
+        <div className="metadata-from__heading">
+            <h2>Data souboru</h2>
+        </div>
       <div className="metadata-from__title">
         <label htmlFor="title">Titulek:</label>
         <div>
