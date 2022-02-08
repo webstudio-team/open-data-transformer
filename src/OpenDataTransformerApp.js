@@ -205,7 +205,7 @@ export default function OpenDataTransformerApp() {
             <form>
               {!!columnsMetadata.length && (
                 <div>
-                  <h2 className="form-column__heading">Data sloupců</h2>
+                  <h2 className="form-column__heading">Popis sloupcu datové sady</h2>
                 </div>
               )}
               <ul>
@@ -237,14 +237,14 @@ export default function OpenDataTransformerApp() {
                     name={download}
                     onClick={handleDownloadCsv}
                   >
-                    Download csv
+                    Stáhnout CSV
                   </Button>
                   <Button
                     type="download"
                     name={download}
                     onClick={handleDownloadMetadata}
                   >
-                    Download metadata
+                    Stáhnout metadata
                   </Button>
                 </div>
 

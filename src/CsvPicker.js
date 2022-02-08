@@ -22,6 +22,7 @@ export default function CsvPicker({
 
   return (
     <div className={`form-upload ${!!file ? "" : "visually-hidden"}`}>
+      <div>Nahraný soubor:</div>
       <div className="form-upload__input">
         {!!file && (
           <>
@@ -40,7 +41,7 @@ export default function CsvPicker({
         )}
       </div>
       <div className="form-upload__hidden-input visually-hidden">
-        <label htmlFor="file">Nahrajte súbor:</label>
+        <label htmlFor="file">Nahraný soubor:</label>
         <div>
           <input
             name="file"
@@ -53,7 +54,7 @@ export default function CsvPicker({
       <div className="form-upload__menu">
         <div className="form-upload__selects">
           <div>
-            <label htmlFor="encoding">Kódování:</label>
+            <label htmlFor="encoding">Použité kódování:</label>
             <div>
               <select
                 ref={encodingRef}
@@ -67,7 +68,7 @@ export default function CsvPicker({
             </div>
           </div>
           <div>
-            <label htmlFor="delimiter">Oddělovač:</label>
+            <label htmlFor="delimiter">Použitý oddělovač:</label>
             <div>
               <select
                 ref={delimiterRef}
