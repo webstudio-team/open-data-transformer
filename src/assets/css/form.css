@@ -134,20 +134,15 @@ ul li:first-child {
 }
 
 .form-buttons {
-  display: flex;
-  gap: 20px;
-  flex-direction: column;
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: 1fr;
 }
-
-.form-validate {
+.form-buttons--text {
   text-align: center;
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-.form-validate p {
-  color: #2a2a2a;
+  color: #2A2A2A;
   opacity: 0.4;
-  padding-bottom: 10px;
+  margin-bottom: 20px;
   font-weight: normal;
 }
 
@@ -160,6 +155,6 @@ ul li:first-child {
     flex-direction: row;
   }
   .form-buttons {
-    flex-direction: row;
+    grid-template-columns: 1fr 1fr 1fr;
   }
 }

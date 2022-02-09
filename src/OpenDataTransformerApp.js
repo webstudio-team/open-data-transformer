@@ -1,6 +1,7 @@
 import "./assets/css/app.css";
 import "./assets/css/footer.css";
 import download from "./assets/images/download.svg";
+import downloadIcon from "./assets/images/download-icon.svg";
 
 import logoMzcr from "./assets/images/logo-data-mzcr.svg";
 import logoUzis from "./assets/images/logo-uzis.svg";
@@ -229,7 +230,21 @@ export default function OpenDataTransformerApp() {
           <div className="wrapper__download">
             <div className="container">
               <>
+                <div className="form-buttons--text">
+                  <p>
+                    Před stažením si nezapomeňte validovat váš datový soubor
+                  </p>
+                </div>
                 <div className="form-buttons">
+                  <a
+                    href="https://csvw.opendata.cz/"
+                    target="_blank"
+                    rel={"noreferrer"}
+                    className="button--validate"
+                  >
+                    Validovat data
+                    <img src={downloadIcon} alt={`${downloadIcon} ikonka`} />
+                  </a>
                   <Button
                     type="download"
                     name={download}
@@ -244,20 +259,6 @@ export default function OpenDataTransformerApp() {
                   >
                     Stáhnout metadata
                   </Button>
-                </div>
-
-                <div className="form-validate">
-                  <p>
-                    Před stažením si nezapomeňte validovat váš datový soubor
-                  </p>
-                  <a
-                    href="https://csvw.opendata.cz/"
-                    target="_blank"
-                    rel={"noreferrer"}
-                    className="button--validate"
-                  >
-                    Validovat data
-                  </a>
                 </div>
               </>
             </div>

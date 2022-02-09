@@ -12,6 +12,10 @@
     font-weight: 500;
     cursor: pointer;
 }
+.button--validate img {
+    padding-left: 10px;
+    vertical-align: middle;
+}
 .button--download {
     flex-grow: 1;
     padding-top: 20px;
@@ -31,13 +35,15 @@
     padding-left: 80px;
     padding-right: 80px;
 }
-
 .button--validate {
     color: #2E5D7F;
     background: #FFFFFF;
-    padding: 10px 30px;
     text-decoration: none;
     font-weight: bold;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-align: center;
+    vertical-align: middle;
 }
 .button--cookies {
     appearance: none;
