@@ -228,40 +228,34 @@ export default function OpenDataTransformerApp() {
         </div>
 
         {!!columnsMetadata.length && (
-          <div className="wrapper__download">
-            <div className="container">
-              <>
-                <div className="form-buttons--text">
-                  <p>
-                    Před stažením si nezapomeňte validovat váš datový soubor
-                  </p>
-                </div>
-                <div className="form-buttons">
-                  <a
-                    href="https://csvw.opendata.cz/"
-                    target="_blank"
-                    rel={"noreferrer"}
-                    className="button--validate"
-                  >
-                    Validovat data
-                    <img src={downloadIcon} alt={`${downloadIcon} ikonka`} />
-                  </a>
-                  <Button
-                    type="download"
-                    name={download}
-                    onClick={handleDownloadCsv}
-                  >
-                    Stáhnout CSV
-                  </Button>
-                  <Button
-                    type="download"
-                    name={download}
-                    onClick={handleDownloadMetadata}
-                  >
-                    Stáhnout metadata
-                  </Button>
-                </div>
-              </>
+          <div className="container">
+            <div className="form-buttons">
+              <Button
+                type="download"
+                name={download}
+                onClick={handleDownloadCsv}
+              >
+                Stáhnout CSV
+              </Button>
+              <Button
+                type="download"
+                name={download}
+                onClick={handleDownloadMetadata}
+              >
+                Stáhnout metadata
+              </Button>
+            </div>
+            <div className="text--center">
+              <p>Nezapomeňte validovat vaši datovou sadu</p>
+              <a
+                href="https://csvw.opendata.cz/"
+                target="_blank"
+                rel={"noreferrer"}
+                className="button--validate"
+              >
+                Validovat data
+                <img src={downloadIcon} alt={`${downloadIcon} ikonka`} />
+              </a>
             </div>
           </div>
         )}

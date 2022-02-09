@@ -56,10 +56,6 @@ body {
     background: #fff;
     padding-top: 20px;
   }
-  &__download {
-    padding-top: 40px;
-    padding-bottom: 20px;
-  }
   &__metadata-form {
     padding-bottom: 40px;
   }
@@ -85,4 +81,10 @@ body {
   padding: 0;
   position: absolute;
   width: 1px;
+}
+
+.text {
+  &--center {
+    text-align: center;
+  }
 }

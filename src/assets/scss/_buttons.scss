@@ -2,8 +2,9 @@
   &--download,
   &--submit,
   &--validate {
-    background: #2E5D7F;
-    box-shadow: -5px -2px 20px rgba(0, 0, 0, 0.1), 2px 5px 15px rgba(0, 0, 0, 0.1);
+    background: #2e5d7f;
+    box-shadow: -5px -2px 20px rgba(0, 0, 0, 0.1),
+      2px 5px 15px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
     color: #fff;
     border: none;
@@ -11,11 +12,18 @@
     font-weight: 500;
     cursor: pointer;
     &:hover {
-      background: linear-gradient(0deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)), #2E5D7F;;
+      background: linear-gradient(
+          0deg,
+          rgba(255, 255, 255, 0.2),
+          rgba(255, 255, 255, 0.2)
+        ),
+        #2e5d7f;
     }
   }
   &--download {
     flex-grow: 1;
+    flex-basis: 0;
+    margin: 20px;
     padding-top: 20px;
     padding-bottom: 20px;
     img {
@@ -25,20 +33,23 @@
   }
   &--submit {
     height: 100%;
-    background: #2E5D7F;
-    box-shadow: -5px -2px 20px rgba(0, 0, 0, 0.1), 2px 5px 15px rgba(0, 0, 0, 0.1);
+    background: #2e5d7f;
+    box-shadow: -5px -2px 20px rgba(0, 0, 0, 0.1),
+      2px 5px 15px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
     color: #fff;
     padding-left: 80px;
     padding-right: 80px;
   }
   &--validate {
-    color: #2E5D7F;
-    background: #FFFFFF;
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: 20px;
+    color: #2e5d7f;
+    background: #ffffff;
     text-decoration: none;
     font-weight: bold;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding: 20px;
     text-align: center;
     vertical-align: middle;
     img {
@@ -46,7 +57,7 @@
       vertical-align: middle;
     }
     &:hover {
-      background: #F2F5F7;
+      background: #f2f5f7;
     }
   }
   &--cookies {
@@ -56,7 +67,7 @@
     border-radius: 0;
     cursor: pointer;
     padding: 0;
-    color: #003A63;
+    color: #003a63;
     font-size: 12px;
   }
 }

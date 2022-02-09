@@ -23,7 +23,10 @@ export default function DatasetMetadataForm({
     (event) => {
       setDatasetMetadata({
         ...datasetMetadata,
-        [event.target.name]: event.target.value.slice(0, descriptionLengthLimit),
+        [event.target.name]: event.target.value.slice(
+          0,
+          descriptionLengthLimit
+        ),
       });
     },
     [descriptionLengthLimit, setDatasetMetadata]
@@ -52,7 +55,7 @@ export default function DatasetMetadataForm({
             name="filename"
             type="text"
             onChange={handleChange}
-            placeholder="Například “OD_cervenec_21”.csv"
+            placeholder={'Například "covid-cervenec-21.csv"'}
           />
         </div>
       </div>
@@ -63,7 +66,7 @@ export default function DatasetMetadataForm({
             name="source"
             type="text"
             onChange={handleChange}
-            placeholder="Například “něco”"
+            placeholder="Například “ÚZIS ČR”"
           />
         </div>
       </div>
@@ -92,7 +95,9 @@ export default function DatasetMetadataForm({
             onChange={setFormattedContent}
             placeholder="Maximálně 500 znaků"
             className={
-                descriptionLengthLimit === datasetMetadata.description.length ? "has-border" : ""
+              descriptionLengthLimit === datasetMetadata.description.length
+                ? "has-border"
+                : ""
             }
           />
         </div>
