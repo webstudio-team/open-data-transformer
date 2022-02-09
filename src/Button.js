@@ -1,4 +1,4 @@
-import "./assets/css/buttons.css"
+import "./assets/scss/_buttons.scss"
 
 
 export default function Button({onClick, children, type, name}) {

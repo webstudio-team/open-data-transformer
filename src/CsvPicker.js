@@ -1,4 +1,4 @@
-import "./assets/css/form.css";
+import "./assets/scss/_form.scss";
 
 import csvFile from "./assets/images/csv-file.svg";
 import close from "./assets/images/close.svg";
@@ -55,7 +55,7 @@ export default function CsvPicker({
         <div className="form-upload__selects">
           <div>
             <label htmlFor="encoding">Použité kódování:</label>
-            <div>
+            <div className="form-upload__selects--label">
               <select
                 ref={encodingRef}
                 onChange={(e) => setEncoding(e.target.value)}
@@ -69,7 +69,7 @@ export default function CsvPicker({
           </div>
           <div>
             <label htmlFor="delimiter">Použitý oddělovač:</label>
-            <div>
+            <div className="form-upload__selects--label">
               <select
                 ref={delimiterRef}
                 onChange={(e) => setDelimiter(e.target.value)}

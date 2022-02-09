@@ -1,6 +1,5 @@
 import "@pathofdev/react-tag-input/build/index.css";
-import "./assets/css/tagInput.css";
-import "./assets/css/metadataForm.css";
+import "./assets/scss/_metadata-form.scss";
 
 import ReactTagInput from "@pathofdev/react-tag-input";
 import { useCallback } from "react";

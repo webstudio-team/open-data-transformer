@@ -19,6 +19,18 @@ body {
   margin-left: auto;
   padding-right: 10px;
   padding-left: 10px;
+  @media only screen and (min-width: 576px) {
+    max-width: 540px;
+  }
+  @media only screen and (min-width: 768px) {
+    max-width: 720px;
+  }
+  @media only screen and (min-width: 1170px) {
+    max-width: 1150px;
+  }
+  @media only screen and (min-width: 1440px) {
+    max-width: 1410px;
+  }
 }
 .header {
   display: flex;
@@ -27,27 +39,30 @@ body {
   align-items: center;
   padding-top: 20px;
   text-align: center;
-}
-.header img {
-  width: 100%;
-  max-width: 290px;
-}
-.header h1 {
-  font-family: "Share Tech Mono", monospace;
+  img {
+    width: 100%;
+    max-width: 290px;
+  }
+  h1 {
+    font-family: "Share Tech Mono", monospace;
+  }
+  @media only screen and (min-width: 576px) {
+    padding-top: 200px;
+  }
 }
 .wrapper {
   padding-bottom: 20px;
-}
-.wrapper__column-form {
-  background: #fff;
-  padding-top: 20px;
-}
-.wrapper__download {
-  padding-top: 40px;
-  padding-bottom: 20px;
-}
-.wrapper__metadata-form {
-  padding-bottom: 40px;
+  &__column-form {
+    background: #fff;
+    padding-top: 20px;
+  }
+  &__download {
+    padding-top: 40px;
+    padding-bottom: 20px;
+  }
+  &__metadata-form {
+    padding-bottom: 40px;
+  }
 }
 
 .logos {
@@ -70,31 +85,4 @@ body {
   padding: 0;
   position: absolute;
   width: 1px;
-}
-
-@media only screen and (min-width: 576px) {
-  .container {
-    max-width: 540px;
-  }
-  .header {
-    padding-top: 200px;
-  }
-}
-
-@media only screen and (min-width: 768px) {
-  .container {
-    max-width: 720px;
-  }
-}
-
-@media only screen and (min-width: 1170px) {
-  .container {
-    max-width: 1150px;
-  }
-}
-
-@media only screen and (min-width: 1440px) {
-  .container {
-    max-width: 1410px;
-  }
 }

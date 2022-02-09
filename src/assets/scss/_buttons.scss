@@ -1,8 +1,7 @@
-.button,
-.button--download,
-.button--submit,
-.button--validate
-{
+.button {
+  &--download,
+  &--submit,
+  &--validate {
     background: #2E5D7F;
     box-shadow: -5px -2px 20px rgba(0, 0, 0, 0.1), 2px 5px 15px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
@@ -11,22 +10,20 @@
     font-size: 16px;
     font-weight: 500;
     cursor: pointer;
-}
-.button--validate img {
-    padding-left: 10px;
-    vertical-align: middle;
-}
-.button--download {
+    &:hover {
+      background: linear-gradient(0deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)), #2E5D7F;;
+    }
+  }
+  &--download {
     flex-grow: 1;
     padding-top: 20px;
     padding-bottom: 20px;
-}
-.button--download img {
-    padding-right: 10px;
-    vertical-align: middle;
-}
-
-.button--submit {
+    img {
+      padding-right: 10px;
+      vertical-align: middle;
+    }
+  }
+  &--submit {
     height: 100%;
     background: #2E5D7F;
     box-shadow: -5px -2px 20px rgba(0, 0, 0, 0.1), 2px 5px 15px rgba(0, 0, 0, 0.1);
@@ -34,8 +31,8 @@
     color: #fff;
     padding-left: 80px;
     padding-right: 80px;
-}
-.button--validate {
+  }
+  &--validate {
     color: #2E5D7F;
     background: #FFFFFF;
     text-decoration: none;
@@ -44,8 +41,15 @@
     padding-bottom: 20px;
     text-align: center;
     vertical-align: middle;
-}
-.button--cookies {
+    img {
+      padding-left: 10px;
+      vertical-align: middle;
+    }
+    &:hover {
+      background: #F2F5F7;
+    }
+  }
+  &--cookies {
     appearance: none;
     background: transparent;
     border: 0;
@@ -53,4 +57,6 @@
     cursor: pointer;
     padding: 0;
     color: #003A63;
+    font-size: 12px;
+  }
 }

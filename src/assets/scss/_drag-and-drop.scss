@@ -1,0 +1,20 @@
+.drag-drop-zone {
+  background: rgba(0, 58, 99, 0.05);
+  border: 1px dashed #003A63;
+  border-radius: 20px;
+  padding: 60px 40px 70px;
+  text-align: center;
+  cursor: pointer;
+  &--hidden {
+    display: none;
+  }
+  p {
+    font-family: inherit;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 21px;
+    letter-spacing: 0.2px;
+    color: #003A63;
+  }
+}

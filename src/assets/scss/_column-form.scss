@@ -10,12 +10,21 @@
 
   &__name {
     flex-grow: 3;
+    & > div {
+      padding-top: 5px;
+    }
+  }
+  &__select {
+    & > div {
+      padding-top: 5px;
+    }
   }
 
   &-description {
     &__label {
       display: flex;
       justify-content: space-between;
+      padding-bottom: 5px;
     }
 
     &__indicator {

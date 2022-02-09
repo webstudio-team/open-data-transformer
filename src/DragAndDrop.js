@@ -1,4 +1,4 @@
-import "./assets/css/DragAndDrop.css";
+import "./assets/scss/_drag-and-drop.scss";
 
 import upload from "./assets/images/upload.svg";
 

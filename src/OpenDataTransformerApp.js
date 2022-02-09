@@ -1,5 +1,6 @@
-import "./assets/css/app.css";
-import "./assets/css/footer.css";
+import "./assets/scss/_app.scss";
+import "./assets/scss/_footer.scss";
+
 import download from "./assets/images/download.svg";
 import downloadIcon from "./assets/images/download-icon.svg";
 
@@ -269,7 +270,7 @@ export default function OpenDataTransformerApp() {
       <footer>
         <div>
           <div className="container">
-            <div className="footer--logo">
+            <div className="footer__logo">
               <a
                 href="http://www.iba.muni.cz/"
                 target="_blank"
