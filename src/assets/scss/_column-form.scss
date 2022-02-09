@@ -1,0 +1,35 @@
+.form-column {
+  margin-bottom: 20px;
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 20px 0;
+  }
+
+  &__name {
+    flex-grow: 3;
+  }
+
+  &-description {
+    &__label {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    &__indicator {
+      color: #cccccc;
+    }
+
+    &__input {
+      margin-bottom: 20px;
+    }
+  }
+
+  @media only screen and (min-width: 576px) {
+    &__wrapper {
+      flex-direction: row;
+    }
+  }
+}

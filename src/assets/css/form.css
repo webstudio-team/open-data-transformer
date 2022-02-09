@@ -12,7 +12,7 @@ select {
   cursor: pointer;
 }
 input,
-textarea{
+textarea {
   background: #ffffff;
   border: 1px solid #d5dbe3;
   border-radius: 5px;
@@ -22,11 +22,11 @@ textarea{
   font-size: 16px;
 }
 input::placeholder {
-  color: #CCCCCC;
+  color: #cccccc;
 }
 
 textarea::placeholder {
-  color: #CCCCCC;
+  color: #cccccc;
 }
 
 label {
@@ -102,37 +102,6 @@ ul li:first-child {
   cursor: pointer;
 }
 
-.form-column {
-  padding-bottom: 40px;
-}
-
-.form-column__heading {
-  margin-bottom: 0;
-}
-
-.form-column__wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin: 20px 0;
-}
-.form-column__header {
-  border-top: 2px solid #d5dbe3;
-}
-.form-column__header div {
-  background: #d5dbe3;
-  border-radius: 0 0 5px 0;
-  display: inline-block;
-  padding: 10px 15px;
-  margin-right: 10px;
-}
-.form-column__name {
-  flex-grow: 3;
-}
-.form-column__description {
-  margin-top: 20px;
-}
-
 .form-buttons {
   display: grid;
   grid-gap: 20px;
@@ -140,7 +109,7 @@ ul li:first-child {
 }
 .form-buttons--text {
   text-align: center;
-  color: #2A2A2A;
+  color: #2a2a2a;
   opacity: 0.4;
   margin-bottom: 20px;
   font-weight: normal;
@@ -150,9 +119,6 @@ ul li:first-child {
   .form-upload__menu {
     flex-direction: row;
     justify-content: space-between;
-  }
-  .form-column__wrapper {
-    flex-direction: row;
   }
   .form-buttons {
     grid-template-columns: 1fr 1fr 1fr;
