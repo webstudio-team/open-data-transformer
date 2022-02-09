@@ -1,5 +1,26 @@
-export default function ColumnForm({ index, columnName, handleChange }) {
+import React from "react";
+
+export default function ColumnForm({
+  index,
+  columnName,
+  handleChange,
+  descriptionLengthLimit = 200,
+}) {
   const handleInput = (event) => {
+    handleChange(index, {
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  const handleDescriptionChange = (event) => {
+    if (event.target.value.length > descriptionLengthLimit) {
+      event.target.value = event.target.value.slice(0, descriptionLengthLimit);
+      event.target.classList.add("has-border");
+      event.target.nextSibling.classList.remove("hidden");
+      return;
+    }
+    event.target.classList.remove("has-border");
+    event.target.nextSibling.classList.add("hidden");
     handleChange(index, {
       [event.target.name]: event.target.value,
     });
@@ -39,9 +60,10 @@ export default function ColumnForm({ index, columnName, handleChange }) {
           <input
             name="description"
             type="text"
-            onChange={handleInput}
+            onChange={handleDescriptionChange}
             placeholder="Maximálně 200 znaků"
           />
+          <div className="warning hidden">Dosáhli jste limitu počtu znaků!</div>
         </div>
       </div>
     </div>

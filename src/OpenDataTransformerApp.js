@@ -186,7 +186,6 @@ export default function OpenDataTransformerApp() {
                   setDatasetMetadata={setDatasetMetadata}
                   tags={tags}
                   setTags={setTags}
-                  limit={500}
                 />
               )}
             </form>
@@ -202,7 +201,9 @@ export default function OpenDataTransformerApp() {
             <form>
               {!!columnsMetadata.length && (
                 <div>
-                  <h2 className="form-column__heading">Popis sloupcu datové sady</h2>
+                  <h2 className="form-column__heading">
+                    Popis sloupcu datové sady
+                  </h2>
                 </div>
               )}
               <ul>

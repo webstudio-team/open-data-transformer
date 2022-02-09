@@ -10,7 +10,7 @@ export default function DatasetMetadataForm({
   setDatasetMetadata,
   tags,
   setTags,
-  limit,
+  descriptionLengthLimit = 500,
 }) {
   const handleChange = (event) => {
     setDatasetMetadata({
@@ -24,10 +24,10 @@ export default function DatasetMetadataForm({
     (event) => {
       setDatasetMetadata({
         ...datasetMetadata,
-        [event.target.name]: event.target.value.slice(0, limit),
+        [event.target.name]: event.target.value.slice(0, descriptionLengthLimit),
       });
     },
-    [limit, setDatasetMetadata]
+    [descriptionLengthLimit, setDatasetMetadata]
   );
 
   return (
@@ -83,7 +83,7 @@ export default function DatasetMetadataForm({
         <div className="metadata-from__description--label">
           <label htmlFor="description">Popis:</label>
           <div>
-            {datasetMetadata.description.length}/{limit}
+            {datasetMetadata.description.length}/{descriptionLengthLimit}
           </div>
         </div>
         <div>
@@ -92,14 +92,12 @@ export default function DatasetMetadataForm({
             value={datasetMetadata.description}
             onChange={setFormattedContent}
             placeholder="Maximálně 500 znaků"
-            style={
-              limit === datasetMetadata.description.length
-                ? { border: "1px solid #D31145" }
-                : {}
+            className={
+                descriptionLengthLimit === datasetMetadata.description.length ? "has-border" : ""
             }
           />
         </div>
-        {limit === datasetMetadata.description.length ? (
+        {descriptionLengthLimit === datasetMetadata.description.length ? (
           <div className="warning">Dosáhli jste limitu počtu znaků!</div>
         ) : (
           ""

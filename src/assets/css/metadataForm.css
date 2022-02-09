@@ -46,8 +46,14 @@
 .metadata-from__description--label > div {
   color: #CCCCCC;
 }
-
+.has-border {
+  border: 2px solid #D31145;
+}
 .warning {
   padding-top: 5px;
   color:#D31145;
+}
+
+.hidden {
+  display: none;
 }
