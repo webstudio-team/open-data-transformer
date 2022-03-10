@@ -1,0 +1,36 @@
+{
+  "files": {
+    "main.css": "/open-data-transformer/static/css/main.bd39fa86.chunk.css",
+    "main.js": "/open-data-transformer/static/js/main.455fcb05.chunk.js",
+    "main.js.map": "/open-data-transformer/static/js/main.455fcb05.chunk.js.map",
+    "runtime-main.js": "/open-data-transformer/static/js/runtime-main.c840331f.js",
+    "runtime-main.js.map": "/open-data-transformer/static/js/runtime-main.c840331f.js.map",
+    "static/css/2.89293dd7.chunk.css": "/open-data-transformer/static/css/2.89293dd7.chunk.css",
+    "static/js/2.ffe14e4c.chunk.js": "/open-data-transformer/static/js/2.ffe14e4c.chunk.js",
+    "static/js/2.ffe14e4c.chunk.js.map": "/open-data-transformer/static/js/2.ffe14e4c.chunk.js.map",
+    "static/js/3.a2fbcaa3.chunk.js": "/open-data-transformer/static/js/3.a2fbcaa3.chunk.js",
+    "static/js/3.a2fbcaa3.chunk.js.map": "/open-data-transformer/static/js/3.a2fbcaa3.chunk.js.map",
+    "index.html": "/open-data-transformer/index.html",
+    "static/css/2.89293dd7.chunk.css.map": "/open-data-transformer/static/css/2.89293dd7.chunk.css.map",
+    "static/css/main.bd39fa86.chunk.css.map": "/open-data-transformer/static/css/main.bd39fa86.chunk.css.map",
+    "static/js/2.ffe14e4c.chunk.js.LICENSE.txt": "/open-data-transformer/static/js/2.ffe14e4c.chunk.js.LICENSE.txt",
+    "static/media/_form.scss": "/open-data-transformer/static/media/arrow-dow.e91336c9.svg",
+    "static/media/close.7dda5159.svg": "/open-data-transformer/static/media/close.7dda5159.svg",
+    "static/media/csv-file.a22d929a.svg": "/open-data-transformer/static/media/csv-file.a22d929a.svg",
+    "static/media/download-icon.47fd62fd.svg": "/open-data-transformer/static/media/download-icon.47fd62fd.svg",
+    "static/media/download.30c31dca.svg": "/open-data-transformer/static/media/download.30c31dca.svg",
+    "static/media/index.cjs": "/open-data-transformer/static/media/index.c0cb68d2.cjs",
+    "static/media/logo-data-mzcr.3d29bba8.svg": "/open-data-transformer/static/media/logo-data-mzcr.3d29bba8.svg",
+    "static/media/logo-iba-mu.904293c3.svg": "/open-data-transformer/static/media/logo-iba-mu.904293c3.svg",
+    "static/media/logo-uzis.412624c0.svg": "/open-data-transformer/static/media/logo-uzis.412624c0.svg",
+    "static/media/upload.ecc3d64c.svg": "/open-data-transformer/static/media/upload.ecc3d64c.svg",
+    "static/media/web_studio.db15bc58.svg": "/open-data-transformer/static/media/web_studio.db15bc58.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.c840331f.js",
+    "static/css/2.89293dd7.chunk.css",
+    "static/js/2.ffe14e4c.chunk.js",
+    "static/css/main.bd39fa86.chunk.css",
+    "static/js/main.455fcb05.chunk.js"
+  ]
+}
