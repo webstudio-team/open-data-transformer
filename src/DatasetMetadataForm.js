@@ -29,7 +29,7 @@ export default function DatasetMetadataForm({
         ),
       });
     },
-    [descriptionLengthLimit, setDatasetMetadata]
+    [descriptionLengthLimit, datasetMetadata]
   );
 
   return (
